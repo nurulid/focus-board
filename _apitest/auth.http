@@ -1,0 +1,20 @@
+### Registering user
+
+POST http://localhost:3000/api/v1/users/register
+
+{
+    "firstName": "nurul",
+    "lastName": "insani",
+    "username": "nurulid",
+    "email": "nurul@test.com",
+    "password": "123456"
+}
+
+### Login user
+
+POST http://localhost:3000/api/v1/users/login
+
+{
+    "email": "nurul@test.com",
+    "password": "123456"
+}
