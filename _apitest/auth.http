@@ -3,10 +3,10 @@
 POST http://localhost:3000/api/v1/users/register
 
 {
-    "firstName": "nurul",
-    "lastName": "insani",
-    "username": "nurulid",
-    "email": "nurul@test.com",
+    "firstName": "jono",
+    "lastName": "doe",
+    "username": "jonodoe",
+    "email": "jono@test.com",
     "password": "123456"
 }
 
@@ -15,6 +15,21 @@ POST http://localhost:3000/api/v1/users/register
 POST http://localhost:3000/api/v1/users/login
 
 {
-    "email": "nurul@test.com",
+    "email": "jono@test.com",
     "password": "123456"
+}
+
+### Get Tasks
+
+GET http://localhost:3000/api/v1/tasks
+
+### Create Task
+
+POST http://localhost:3000/api/v1/tasks
+
+{
+    "name": "nurul task 5",
+    "description": "description task nya nurul 5",
+    "isCompleted": true,
+    "userId": "1"
 }
