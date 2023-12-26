@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    html, body {
+        @apply h-full;
+    }
+
+    /* To make the footer stay at the bottom despite there's not enough content */
+    /* Not sure from where these div come */
+    body > div[data-overlay-container="true"] {
+        @apply h-full; 
+    }
+}
