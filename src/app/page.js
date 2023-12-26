@@ -1,7 +1,7 @@
 import { Content } from "@/components/Content";
 
 async function getTasks() {
-  const res = await fetch("http://localhost:3000/api/v1/tasks?done=true", {
+  const res = await fetch("http://localhost:3000/api/v1/tasks", {
     cache: "no-store",
   });
   const data = await res.json();
@@ -11,9 +11,5 @@ async function getTasks() {
 export default async function Home() {
   const { data } = await getTasks();
 
-  return (
-    <div>
-      <Content data={data} />
-    </div>
-  )
+  return <Content data={data} />;
 }
