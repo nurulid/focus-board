@@ -1,6 +1,6 @@
 import React from 'react'
-import { Header } from '../Header'
-import { Footer } from '../Footer'
+import { Header } from '../sharedUI/Header'
+import { Footer } from '../sharedUI/Footer'
 
 export const DefaultLayout = ({children}) => {
   return (

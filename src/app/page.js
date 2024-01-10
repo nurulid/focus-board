@@ -1,15 +1,13 @@
-import { Content } from "@/components/Content";
-
-async function getTasks() {
-  const res = await fetch("http://localhost:3000/api/v1/tasks", {
-    cache: "no-store",
-  });
-  const data = await res.json();
-  return data;
-}
-
 export default async function Home() {
-  const { data } = await getTasks();
 
-  return <Content data={data} />;
+  return (
+    <div className="grid grid-cols-4 gap-6 h-[calc(100vh-220px)]">
+      {/* LEFT */}
+      <div className="border p-5 rounded-2xl overflow-auto bg-gray-300/10"></div>
+      {/* CENTER */}
+      <div className="col-span-2 border p-5 rounded-2xl overflow-auto bg-gray-300/10"></div>
+      {/* RIGHT */}
+      <div className="border p-5 rounded-2xl overflow-auto bg-gray-300/10"></div>
+    </div>
+  );
 }
