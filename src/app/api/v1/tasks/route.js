@@ -6,53 +6,47 @@ export async function GET(req) {
   const searchParams = req.nextUrl.searchParams;
   const done = searchParams.get("done");
 
-  console.log(done)
+  // console.log(done)
 
-  let allTasks;
+  let tasks;
 
   try {
     if (done) {
-      allTasks = await prisma.tasks.findMany({
+      tasks = await prisma.task.findMany({
         where: {
           isCompleted: true,
         },
       });
     } else {
-      allTasks = await prisma.tasks.findMany();
+      tasks = await prisma.task.findMany();
     }
 
     return NextResponse.json(
-      { data: allTasks, message: "Fetch data success" },
+      { tasks, message: "Fetch all tasks success." },
       { status: 200 }
     );
   } catch (error) {
     return NextResponse.json(
-      { error, message: "Fetch data ERROR" },
+      { error, message: "Fetch all tasks ERROR." },
       { status: 500 }
     );
   }
 }
 
 export async function POST(req) {
-  const { name, description, createdAt, isCompleted, userId } = await req.json();
+  const data = await req.json();
 
   // creating data in database
   try {
-    const createTask = await prisma.tasks.create({
-      data: {
-        name,
-        description,
-        createdAt,
-        isCompleted,
-        userId: Number(userId),
-      },
+    const task = await prisma.task.create({
+      data
     });
     return NextResponse.json(
-      { message: "Create task success!", data: createTask },
+      { message: "Task created successfully.", data: task },
       { status: 201 }
     );
   } catch (error) {
     console.log(error);
-    return NextResponse.json({ error: "Create task error!" }, { status: 500 });
+    return NextResponse.json({ errorMessage: "Create task error!" }, { status: 500 });
   }
 }

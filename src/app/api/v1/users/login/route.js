@@ -8,7 +8,7 @@ export async function POST(req) {
   const { email, password } = await req.json();
 
   try {
-    const findUser = await prisma.users.findUnique({
+    const findUser = await prisma.user.findUnique({
       where: {
         email,
       },
@@ -35,8 +35,6 @@ export async function POST(req) {
     // Jika password cocok, kirim data user
     const payload = {
       id: findUser.id,
-      firstName: findUser.firstName,
-      lastName: findUser.lastName,
       username: findUser.username,
       email: findUser.email,
     };
