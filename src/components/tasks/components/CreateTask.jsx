@@ -73,7 +73,7 @@ export const CreateTask = () => {
       {isShow && (
         <>
           <h2 className="mb-3">Add your new task</h2>
-          <form className="create-task space-y-3 text-right p-5 border border-dashed border-green-200 rounded-xl">
+          <form className="create-task space-y-3 text-right p-5 border border-dashed border-green-200 rounded-xl bg-white">
             <Input
               name="title"
               label="Title"
