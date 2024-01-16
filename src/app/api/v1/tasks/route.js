@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import prisma from "@/utils/prisma";
-import slugify from "slugify";
 
 export async function GET(req) {
   const searchParams = req.nextUrl.searchParams;

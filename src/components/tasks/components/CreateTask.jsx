@@ -11,6 +11,7 @@ export const CreateTask = () => {
   const { user } = useUser();
   const [isShow, setIsShow] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
   const [task, setTask] = useState({
     title: "",
     description: "",
@@ -18,9 +19,21 @@ export const CreateTask = () => {
 
   const userId = user?.id;
 
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!task.title.trim()) {
+      newErrors.title = "Title can't be empty";
+    }
+
+    setErrors(newErrors);
+    // Return true if there are no errors, indicating the form is valid
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleShowFormTask = () => {
     setIsShow(!isShow);
-  }
+  };
 
   const handleTaskChange = (e) => {
     const { name, value } = e.target;
@@ -30,33 +43,42 @@ export const CreateTask = () => {
     });
   };
 
+  const { title, description } = task;
+  const apiUrl = `${checkEnvironment()}/tasks`;
+
+  const requestOptions = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      title,
+      description,
+      userId: "84634c59-564c-43b3-9321-94ad3cb60013",
+    }),
+  };
+
   async function handleCreateTask() {
     setLoading(true);
-    const { title, description } = task;
+    // Ensure that form data has default values
+    const defaultTaskData = {
+      title: "",
+      description: "",
+    };
 
-    const res = await fetch(`${checkEnvironment()}/tasks`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        title,
-        description,
-        userId: "84634c59-564c-43b3-9321-94ad3cb60013",
-      }),
-    });
-    const {data, message, errorMessage} = await res.json();
-    console.log(data);
+    let res;
 
-    if (!data) {
+    if (validateForm()) {
+      const res = await fetch(apiUrl, requestOptions);
+
+      const { message } = await res.json();
       setLoading(false);
-      toast.error(errorMessage);
-      return;
+      toast.success(message);
+      setTask(defaultTaskData);
+    } else {
+      res = await fetch(apiUrl);
+      setLoading(false);
     }
-
-    setLoading(false);
-    toast.success(message);
-    setTask("");
   }
 
   return (
@@ -66,8 +88,13 @@ export const CreateTask = () => {
           <h1 className="mb-2">Today's tasks</h1>
           <p className="text-gray-400 px-1">12-1-2024</p>
         </div>
-        <Button isIconOnly color={!isShow ? "success" : "danger"} variant="flat" onClick={handleShowFormTask}>
-          {!isShow ? <Plus/> : <X />}
+        <Button
+          isIconOnly
+          color={!isShow ? "success" : "danger"}
+          variant="flat"
+          onClick={handleShowFormTask}
+        >
+          {!isShow ? <Plus /> : <X />}
         </Button>
       </div>
       {isShow && (
@@ -78,12 +105,15 @@ export const CreateTask = () => {
               name="title"
               label="Title"
               variant="underlined"
+              value={task.title}
               onChange={handleTaskChange}
             />
+            {errors.title && <p className="text-red-500">{errors.title}</p>}
             <Textarea
               name="description"
               label="Description"
               variant="underlined"
+              value={task.description}
               onChange={handleTaskChange}
             />
             <Button

@@ -14,7 +14,7 @@
     }
 
     h1 {
-        @apply text-3xl;
+        @apply text-2xl;
     }
 
     .create-task div[data-slot="input-wrapper"] {
