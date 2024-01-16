@@ -98,9 +98,9 @@ export const CreateTask = () => {
         </Button>
       </div>
       {isShow && (
-        <>
+        <div className="mb-5">
           <h2 className="mb-3">Add your new task</h2>
-          <form className="create-task space-y-3 text-right p-5 border border-dashed border-green-200 rounded-xl bg-white">
+          <form className="create-task space-y-3 text-right p-4 border border-dashed border-green-200 rounded-xl bg-white">
             <Input
               name="title"
               label="Title"
@@ -127,7 +127,7 @@ export const CreateTask = () => {
               Create
             </Button>
           </form>
-        </>
+        </div>
       )}
     </>
   );
