@@ -1,3 +1,4 @@
+import { DigitalClock } from "@/components/feature/DigitalClock";
 import { AllTasks } from "@/components/tasks/components/AllTasks";
 import { CreateTask } from "@/components/tasks/components/CreateTask";
 import { checkEnvironment } from "@/config/apiUrl";
@@ -23,7 +24,9 @@ export default async function Home() {
         <AllTasks tasks={tasks}/>
       </div>
       {/* RIGHT */}
-      <div className="border p-5 rounded-2xl overflow-auto bg-gray-300/10"></div>
+      <div className="border p-5 rounded-2xl overflow-auto bg-gray-300/10">
+        <DigitalClock/>
+      </div>
     </div>
   );
 }
