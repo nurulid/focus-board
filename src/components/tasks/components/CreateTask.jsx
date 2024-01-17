@@ -56,7 +56,7 @@ export const CreateTask = () => {
     body: JSON.stringify({
       title,
       description,
-      userId: "84634c59-564c-43b3-9321-94ad3cb60013",
+      userId: "c8890d52-38eb-40b2-b242-104cd382a621",
     }),
   };
 
@@ -73,7 +73,14 @@ export const CreateTask = () => {
       setLoading(true);
       const res = await fetch(apiUrl, requestOptions);
 
-      const { message } = await res.json();
+      const { message, errorMessage } = await res.json();
+
+      if (errorMessage) {
+        toast.error(errorMessage);
+        setLoading(false);
+        return;
+      }
+
       setLoading(false);
       toast.success(message);
       setTask(defaultTaskData);

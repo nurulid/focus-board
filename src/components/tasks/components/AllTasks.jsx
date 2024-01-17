@@ -1,7 +1,7 @@
 import React from "react";
 
 export const AllTasks = ({ tasks }) => {
-  const taskLength = tasks.length;
+  const taskLength = tasks?.length;
   return (
     <div className="space-y-3">
       <h2>Tasks: {taskLength}</h2>
