@@ -7,9 +7,9 @@ export const AllTasks = ({ tasks }) => {
       <h2>Tasks: {taskLength}</h2>
       {tasks.map(({ id, title, description }) => {
         return (
-          <div key={id} className="bg-white border rounded-xl py-2 px-4">
+          <div key={id} className="bg-white rounded-xl py-2 px-4 shadow">
             <h3>{title}</h3>
-            <p className="text-gray-400 text-xs">{description ? description : "..."}</p>
+            <p className="text-gray-400 text-xs truncate">{description ? description : "..."}</p>
           </div>
         );
       })}
