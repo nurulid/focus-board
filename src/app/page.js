@@ -12,7 +12,7 @@ async function getTasks() {
 
 export default async function Home() {
   const { tasks } = await getTasks();
-  console.log({tasks})
+  // console.log({tasks})
   return (
     <div className="grid grid-cols-4 gap-6 h-[calc(100vh-220px)]">
       {/* LEFT */}

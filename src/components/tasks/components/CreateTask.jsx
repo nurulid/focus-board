@@ -6,8 +6,10 @@ import { useUser } from "@/components/auth/hooks/useUser";
 import { checkEnvironment } from "@/config/apiUrl";
 import toast from "react-hot-toast";
 import { Plus, X } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export const CreateTask = () => {
+  const router = useRouter();
   const { user } = useUser();
   const [isShow, setIsShow] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -54,12 +56,11 @@ export const CreateTask = () => {
     body: JSON.stringify({
       title,
       description,
-      userId: "84634c59-564c-43b3-9321-94ad3cb60013",
+      userId: "c8890d52-38eb-40b2-b242-104cd382a621",
     }),
   };
 
   async function handleCreateTask() {
-    setLoading(true);
     // Ensure that form data has default values
     const defaultTaskData = {
       title: "",
@@ -69,12 +70,21 @@ export const CreateTask = () => {
     let res;
 
     if (validateForm()) {
+      setLoading(true);
       const res = await fetch(apiUrl, requestOptions);
 
-      const { message } = await res.json();
+      const { message, errorMessage } = await res.json();
+
+      if (errorMessage) {
+        toast.error(errorMessage);
+        setLoading(false);
+        return;
+      }
+
       setLoading(false);
       toast.success(message);
       setTask(defaultTaskData);
+      router.refresh();
     } else {
       res = await fetch(apiUrl);
       setLoading(false);
@@ -100,7 +110,7 @@ export const CreateTask = () => {
       {isShow && (
         <div className="mb-5">
           <h2 className="mb-3">Add your new task</h2>
-          <form className="create-task space-y-3 text-right p-4 border border-dashed border-green-200 rounded-xl bg-white">
+          <form className="create-task space-y-3 text-right p-4 border border-dashed border-green-200 rounded-xl bg-white shadow-md transition-all">
             <Input
               name="title"
               label="Title"
