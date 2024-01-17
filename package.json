@@ -1,5 +1,5 @@
 {
-  "name": "digicommerce",
+  "name": "todayfocus",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -23,6 +23,7 @@
     "react-dom": "^18",
     "react-drop-zone": "^4.3.3",
     "react-hot-toast": "^2.4.1",
+    "react-toast": "^1.0.3",
     "slugify": "^1.6.6"
   },
   "devDependencies": {
