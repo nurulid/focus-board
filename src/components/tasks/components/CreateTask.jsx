@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Input, Textarea } from "@nextui-org/react";
+import { Button, Input, Textarea, Tooltip } from "@nextui-org/react";
 import { useState } from "react";
 import { useUser } from "@/components/auth/hooks/useUser";
 import { checkEnvironment } from "@/config/apiUrl";
@@ -98,14 +98,16 @@ export const CreateTask = () => {
           <h1 className="mb-2">Today's tasks</h1>
           <p className="text-gray-400 px-1">12-1-2024</p>
         </div>
-        <Button
-          isIconOnly
-          color={!isShow ? "success" : "danger"}
-          variant="flat"
-          onClick={handleShowFormTask}
-        >
-          {!isShow ? <Plus /> : <X />}
-        </Button>
+        <Tooltip content={!isShow ? "Add new task" : "Cancel"}>
+          <Button
+            isIconOnly
+            color={!isShow ? "success" : "danger"}
+            variant="flat"
+            onClick={handleShowFormTask}
+          >
+            {!isShow ? <Plus /> : <X />}
+          </Button>
+        </Tooltip>
       </div>
       {isShow && (
         <div className="mb-5">
