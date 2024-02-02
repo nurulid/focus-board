@@ -13,10 +13,11 @@ async function getTasks() {
 }
 
 export default async function Home() {
-  const { tasks } = await getTasks();  
+  const { tasks } = await getTasks();
   const time = new Date();
 
-  time.setSeconds(time.getSeconds() + 1500); // 60 * 1500 = 25 minutes timer
+  // CHANGE TO 10 FOR TESTING SOUND ON PROD
+  time.setSeconds(time.getSeconds() + 10); // 60 * 1500 = 25 minutes timer
 
   return (
     <div className="grid grid-cols-4 gap-6 h-[calc(100vh-220px)]">
@@ -30,7 +31,7 @@ export default async function Home() {
       {/* RIGHT */}
       <div className="border p-5 rounded-2xl overflow-auto bg-gray-300/10 space-y-5">
         <DigitalClock />
-        <PomodoroTimer expiryTimestamp={time}/>
+        <PomodoroTimer expiryTimestamp={time} />
       </div>
     </div>
   );
