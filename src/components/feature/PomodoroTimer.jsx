@@ -70,8 +70,7 @@ export const PomodoroTimer = ({ expiryTimestamp }) => {
             onClick={() => {
               // Restarts
               const time = new Date();
-              // CHANGE TO 10 FOR TESTING SOUND ON PROD
-              time.setSeconds(time.getSeconds() + 10); // 60 * 1500 = 25 minutes timer
+              time.setSeconds(time.getSeconds() + 1500); // 60 * 1500 = 25 minutes timer
               restart(time);
             }}
           >
