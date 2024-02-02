@@ -52,10 +52,16 @@ export const PomodoroTimer = ({ expiryTimestamp }) => {
       </p>
       <div className="mt-4 space-x-3">
         {!done ? (
-          <Tooltip content={!isStart ? "Start" : "Pause"}>
-            <button onClick={handleToggle} className="outline-none">
-              {!isStart ? <Play /> : <Pause />}
-            </button>
+          <Tooltip content={isStart || isRunning ? "Pause" : "Start"}>
+            {isStart || isRunning ? (
+              <button onClick={pause} className="outline-none">
+                <Pause />
+              </button>
+            ) : (
+              <button onClick={start} className="outline-none">
+                <Play />
+              </button>
+            )}
           </Tooltip>
         ) : null}
         <Tooltip content="Restart">
@@ -64,7 +70,8 @@ export const PomodoroTimer = ({ expiryTimestamp }) => {
             onClick={() => {
               // Restarts
               const time = new Date();
-              time.setSeconds(time.getSeconds() + 1500); // 60 * 1500 = 25 minutes timer
+              // CHANGE TO 10 FOR TESTING SOUND ON PROD
+              time.setSeconds(time.getSeconds() + 10); // 60 * 1500 = 25 minutes timer
               restart(time);
             }}
           >
