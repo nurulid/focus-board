@@ -38,24 +38,29 @@ export const PomodoroTimer = ({ expiryTimestamp }) => {
   };
 
   return (
-    <div className="text-center">
+    <div className="text-center p-5 bg-green-50 border border-green-300 rounded-xl">
       <h2 className="text-xl">Timer</h2>
-      <div className="text-4xl mt-5 mb-2">
+      <div className="text-4xl mt-4 mb-2">
         <span>{minutes}</span>:<span>{seconds}</span>
       </div>
       <p className="text-sm text-yellow-500">
-        {isRunning ? "Running" : "Not running"}
+        {isRunning ? (
+          <span className="animate-pulse">Running..</span>
+        ) : (
+          "Not running"
+        )}
       </p>
       <div className="mt-4 space-x-3">
         {!done ? (
           <Tooltip content={!isStart ? "Start" : "Pause"}>
-            <button onClick={handleToggle}>
+            <button onClick={handleToggle} className="outline-none">
               {!isStart ? <Play /> : <Pause />}
             </button>
           </Tooltip>
         ) : null}
         <Tooltip content="Restart">
           <button
+            className="outline-none"
             onClick={() => {
               // Restarts
               const time = new Date();
