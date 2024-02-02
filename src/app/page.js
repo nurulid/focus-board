@@ -16,8 +16,7 @@ export default async function Home() {
   const { tasks } = await getTasks();
   const time = new Date();
 
-  // CHANGE TO 10 FOR TESTING SOUND ON PROD
-  time.setSeconds(time.getSeconds() + 10); // 60 * 1500 = 25 minutes timer
+  time.setSeconds(time.getSeconds() + 1500); // 60 * 1500 = 25 minutes timer
 
   return (
     <div className="grid grid-cols-4 gap-6 h-[calc(100vh-220px)]">
