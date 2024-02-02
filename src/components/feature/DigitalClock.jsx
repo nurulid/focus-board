@@ -1,25 +1,26 @@
-"use client"
+"use client";
 
 import { useState, useEffect } from "react";
+import { useTime } from "react-timer-hook";
 
 export const DigitalClock = () => {
-  const [currentTime, setCurrentTime] = useState(new Date());
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
+  const { seconds, minutes, hours, ampm } = useTime({ format: "12-hour" });
+  const [isClient, setIsClient] = useState(false);
 
-    return () => clearInterval(intervalId);
+  useEffect(() => {
+    setIsClient(true);
   }, []);
 
-  const formatTime = currentTime.toLocaleTimeString('en-US', {
-    hour12: true,
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric',
-  });
-
   return (
-    <div className="p-4 text-center text-2xl border border-gray-100 bg-white rounded-md tracking-[5px]">{formatTime}</div>
-  ) 
+    <>
+      {isClient ? (
+        <div className="text-center py-6 px-4 bg-white border border-dashed rounded-xl">
+          <div className="text-3xl tracking-widest">
+            <span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span>
+            <span className="uppercase"> {ampm}</span>
+          </div>
+        </div>
+      ) : null}
+    </>
+  );
 };

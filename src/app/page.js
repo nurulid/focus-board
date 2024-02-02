@@ -1,5 +1,4 @@
-import { MyTime } from "@/components/feature/MyTime";
-import { MyTimer } from "@/components/feature/MyTimer";
+import { DigitalClock } from "@/components/feature/DigitalClock";
 import { AllTasks } from "@/components/tasks/components/AllTasks";
 import { CreateTask } from "@/components/tasks/components/CreateTask";
 import { checkEnvironment } from "@/config/apiUrl";
@@ -26,7 +25,7 @@ export default async function Home() {
       </div>
       {/* RIGHT */}
       <div className="border p-5 rounded-2xl overflow-auto bg-gray-300/10">
-        <MyTime />
+        <DigitalClock />
       </div>
     </div>
   );
