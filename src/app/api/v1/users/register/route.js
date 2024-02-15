@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt"; // #1 import bcrypt
 
-import prisma from "@/utils/prisma";
+import { prisma } from "@/utils/prisma";
 
 export async function POST(req) {
   const { username, email, password } = await req.json();
@@ -18,9 +18,15 @@ export async function POST(req) {
       },
     });
 
-    return NextResponse.json({ data: createUser, message: "User created successfully" }, { status: 201 });
+    return NextResponse.json(
+      { data: createUser, message: "User created successfully" },
+      { status: 201 }
+    );
   } catch (error) {
     console.log(error);
-    return NextResponse.json({ errorMessage: "Something went wrong. Please try again later" }, { status: 500 });
+    return NextResponse.json(
+      { errorMessage: "Something went wrong. Please try again later" },
+      { status: 500 }
+    );
   }
 }

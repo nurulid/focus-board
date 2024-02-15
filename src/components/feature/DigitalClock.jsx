@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useTime } from "react-timer-hook";
 
 export const DigitalClock = () => {
-  const { seconds, minutes, hours, ampm } = useTime({ format: "12-hour" });
+  const { minutes, hours, ampm } = useTime({ format: "12-hour" });
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -16,7 +16,7 @@ export const DigitalClock = () => {
       {isClient ? (
         <div className="text-center py-6 px-4 bg-white border border-dashed rounded-xl">
           <div className="text-3xl tracking-widest">
-            <span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span>
+            <span>{hours}</span>:<span>{minutes}</span>
             <span className="uppercase"> {ampm}</span>
           </div>
         </div>

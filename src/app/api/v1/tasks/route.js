@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import prisma from "@/utils/prisma";
+import { prisma } from "@/utils/prisma";
 
 export async function GET(req) {
   const searchParams = req.nextUrl.searchParams;
@@ -38,7 +38,7 @@ export async function POST(req) {
   // creating data in database
   try {
     const task = await prisma.task.create({
-      data
+      data,
     });
     return NextResponse.json(
       { message: "Task created successfully.", data: task },
@@ -46,6 +46,9 @@ export async function POST(req) {
     );
   } catch (error) {
     console.log(error);
-    return NextResponse.json({ errorMessage: "Create task error!" }, { status: 500 });
+    return NextResponse.json(
+      { errorMessage: "Create task error!" },
+      { status: 500 }
+    );
   }
 }
