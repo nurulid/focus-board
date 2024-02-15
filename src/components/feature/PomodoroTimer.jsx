@@ -43,7 +43,7 @@ export const PomodoroTimer = ({ expiryTimestamp }) => {
       <div className="text-4xl mt-4 mb-2">
         <span>{minutes}</span>:<span>{seconds}</span>
       </div>
-      <p className="text-sm text-yellow-500">
+      <p className="text-xs text-yellow-500">
         {isRunning ? (
           <span className="animate-pulse">Running..</span>
         ) : (
