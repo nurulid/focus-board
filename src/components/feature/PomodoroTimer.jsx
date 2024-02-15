@@ -39,8 +39,8 @@ export const PomodoroTimer = ({ expiryTimestamp }) => {
 
   return (
     <div className="text-center p-5 bg-green-50 border border-green-300 rounded-xl">
-      <h2 className="text-xl">Timer</h2>
-      <div className="text-4xl mt-4 mb-2">
+      <h2 className="">Timer</h2>
+      <div className="text-4xl my-2">
         <span>{minutes}</span>:<span>{seconds}</span>
       </div>
       <p className="text-xs text-yellow-500">
