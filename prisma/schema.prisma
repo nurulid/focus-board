@@ -7,9 +7,13 @@ generator client {
 
 // prisma/schema.prisma
 datasource db {
-  provider  = "postgresql"
-  url  	    = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  // provider  = "postgresql"
+  // url  	    = env("DATABASE_URL")
+  // directUrl = env("DIRECT_URL")
+
+  // JADINYA PAKE sqlite
+  provider = "sqlite"
+  url = "file:./dev.db"
 }
 
 model User {
@@ -28,8 +32,8 @@ model Task {
   title       String
   // slug        String   @unique
   description String
-  createdAt   DateTime @default(now()) @db.Date
-  updatedAt   DateTime @updatedAt @db.Date
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
   isCompleted Boolean  @default(false)
   userId      String
 
